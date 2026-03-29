@@ -11,10 +11,14 @@ let svg = d3
 
 d3.select("textarea").on("input", e => {
 
-    const frequency = {};
+    const frequencies = {};
     e.target.value.split("").forEach(char => {
-        let currentCount = frequency[char] || 0;
-        frequency[char] = currentCount + 1;
+        let currentCount = frequencies[char] || 0;
+        frequencies[char] = currentCount + 1;
     });
-    console.log(frequency)
+    
+    let data = Object.entries(frequencies).map(pair => {
+        return {char : pair[0], count: pair[1]}
+    })
+   
 })
